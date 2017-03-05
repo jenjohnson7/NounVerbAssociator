@@ -6,7 +6,7 @@ sentence_list = gutenberg.sents('austen-emma.txt')
 filtered_list = []
 
 noun = "boy"
-
+#this is a comment
 for sentence in sentence_list:
     for word in sentence:
             if word == noun:
