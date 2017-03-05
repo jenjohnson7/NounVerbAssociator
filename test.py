@@ -10,23 +10,21 @@ noun = "boy"
 for sentence in sentence_list:
     for word in sentence:
             if word == noun:
-                #print(sentence)
                 filtered_list.append(sentence)
 
-print(len(filtered_list))
+print(str(len(filtered_list)) + " sentences containing boy")
 
-nouns_and_verbs = []
+verb_dictionary= {}
 
 for filtered_sentence in filtered_list:
-    text = filtered_sentence
-
-    tagged_tokens = pos_tag(text)
-
-    for sentence in tagged_tokens:
-        if sentence[1] == "NN":
-            nouns_and_verbs.append(sentence[0])
-        elif sentence[1] == "VB":
-            nouns_and_verbs.append(sentence[0])
-
-print(len(nouns_and_verbs))
-print nouns_and_verbs
+    #need_a_verb = True
+    for word in range (0, len(filtered_sentence)):
+        if filtered_sentence[word]==noun:
+            current_pos = "NN"
+            for next_word in range (word+1, len(filtered_sentence)):
+                text = [filtered_sentence[next_word]]
+                word_and_pos = pos_tag(text)
+                current_pos = word_and_pos[0][1]
+                if current_pos == "VG":
+                    verb_dictionary[filtered_sentence[next_word]]=1
+print(verb_dictionary)
