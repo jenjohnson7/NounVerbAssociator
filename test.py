@@ -1,4 +1,6 @@
 import sys
+from en import verb
+# MAKE THIS FASTERRRRRR!!!!!!!!!
 from nltk.corpus import brown, gutenberg
 from nltk import sent_tokenize, word_tokenize, pos_tag
 
@@ -24,13 +26,16 @@ for filtered_sentence in filtered_list:
             current_pos = "NN"
             for next_word in range (word+1, len(filtered_sentence)):
                 #starting from the next index, get pos
-                key = filtered_sentence[next_word]
+                #key = filtered_sentence[next_word]
                 text = [filtered_sentence[next_word]]
                 #must call pos_tag on a list, otherwise it will pos_tag each letter
                 word_and_pos = pos_tag(text)
                 current_pos = word_and_pos[0][1]
                 if current_pos[0] == "V":
                     #if pos is verb of any tense
+                    verb_any_form = word_and_pos[0][0]
+                    key = verb.infinitive(verb_any_form)
+                    #convert the verb into infinitive form to insert into dictionary
                     if verb_dictionary.has_key(key):
                         #add/update its frequency in the dictionary
                         verb_dictionary[key]+=1
@@ -41,9 +46,6 @@ for filtered_sentence in filtered_list:
 
 #sort the dictionary by values into a list
 sorted_verbs = sorted(verb_dictionary, key=verb_dictionary.get)
-
-print(sorted_verbs)
-#in the dictionary/list all strings are unicode and have u'' format when printed
 
 for i in range (0, len(sorted_verbs)):
     print(sorted_verbs[i])
