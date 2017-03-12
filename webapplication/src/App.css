@@ -1,0 +1,33 @@
+.App h1{
+  text-align: center;
+}
+
+
+
+
+/*
+  Index properties
+*/
+
+#section-list  ul{
+  list-style: none;
+}
+
+#section-list  ul li{
+  display:inline;
+  padding: 5px;
+  font-weight: bold;
+}
+
+
+/*
+  Article properties
+*/
+
+#article{
+  margin:40px;
+}
+
+#article-timestamp{
+  font-size: small;
+}
