@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import data from '../public/seed.json';
+import data from '../public/data.json';
 
 
 import './App.css';
@@ -22,21 +22,19 @@ class App extends Component {
       headings and the titles when you display them.
       */
 
-    this.collection = new Map();
 
-    data.forEach((item)=>{
-      let label = item.title[0];
-      if (this.collection.has(label)){
-        this.collection.get(label).push(item);
-      }else{
-        this.collection.set(label, [item]);
-      }
-    });
+    console.log('hi');
+
 
 
   }
   render() {
     /* This is where you need to setup the view for the page */
+
+    return(
+    <div>
+    </div>
+  )
 
   }
 }
