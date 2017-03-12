@@ -20,7 +20,7 @@ def find_next_verb(noun_index, sentence, singular_noun, all_nouns):
         if current_pos[0] == "V":
             #if pos is verb of any tense
             lower_cased_verb = word.lower()
-            key = verb.infinitive(lower_cased_verb)
+            key = verb.infinitive(lower_cased_verb) #en
             #convert the verb into infinitive and lower cased form to insert into dictionary
 
             default_temp_dict = dict()
@@ -56,7 +56,7 @@ def main():
             if current_pos[0] == "N":
                 if not current_pos[-1] == "P":
                     lower_cased_noun = word.lower()
-                    singular_noun = noun.singular(lower_cased_noun)
+                    singular_noun = noun.singular(lower_cased_noun) #en
                     #only insert the singular and lower-cased form of verb into dictionary
                     #WHY ISN"T THIS WORKING?
                     if all_nouns.has_key(singular_noun):
