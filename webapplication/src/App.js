@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import data from '../public/data.json';
+import data from '../public/newdata.json';
 
 
 import './App.css';
@@ -7,6 +7,8 @@ import './App.css';
 class App extends Component {
   constructor(){
     super();
+
+    this.collection = data;
 
     /*
       This code is responsible for setting up our data store.
