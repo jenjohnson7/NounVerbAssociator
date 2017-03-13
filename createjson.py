@@ -72,9 +72,8 @@ def filter_noun(noun):
 
     #noun = noun.singular(noun) <== need en library
     noun = noun.lower()
-    noun = noun.strip(string.punctuation) #to remove trailing punctuation that
+    #noun = noun.strip(string.punctuation) #to remove trailing punctuation that
                                         # I have noticed sometimes appears
-
     return noun
 
 
@@ -95,11 +94,13 @@ def create_verb_object(verb):
     '''
     Parameters: verb (string)
     Returns: verb_object (dict/obj)
-    Creates verb_object (dict/obj with keys 'verb' 'frequency')
+    Creates verb_object (dict/obj with keys 'verb' 'freq')
+
+    Note: called by insert_verb_object
     '''
     verb_object = {}
+    verb_object['freq'] = 1
     verb_object['verb'] = verb
-    verb_object['frequency'] = 1
 
     return verb_object
 
@@ -121,7 +122,7 @@ def insert_verb_object(my_dict, noun, verb):
     if noun in my_dict:
         for verb_object in my_dict[noun]: #checking each verb object within array
             if verb_object['verb'] == verb: #if verb value == verb
-                verb_object['frequency'] = verb_object['frequency'] + 1
+                verb_object['freq'] = verb_object['freq'] + 1
                 verb_found = True;
 
         #creating verb_object and inserting into my_dict at key noun
@@ -135,6 +136,21 @@ def insert_verb_object(my_dict, noun, verb):
 
     return my_dict
 
+def temp_insert_corpus(my_dict, corpus_sents):
+    '''
+    Parameters: my_dict (dict), corpus_sents (array of tokenized POS sentences)
+    Noel's temporary corpus inserting function
+    '''
+    for sentence in corpus_sents:
+        strip_arr = strip_sentence_v1(sentence)
+
+        if (len(strip_arr) >= 2):
+            filtered = filter_noun(strip_arr[0])
+
+        for i in range(1, len(strip_arr)):
+            insert_verb_object(my_dict, filtered, filter_verb(strip_arr[i]))
+
+    return my_dict
 
 def main():
     '''
@@ -144,7 +160,7 @@ def main():
     #sentence_list = brown.sents('cm01') #sci-fi
     '''
 
-    test = brown.tagged_sents('cl13') #mystery
+
     ##test = brown.tagged_sents(categories='mystery')
     # print(test[0])
     # print('This is my break \n \n')
@@ -153,17 +169,40 @@ def main():
     # print(test[0][0][0])
     #
     # print('\n\n')
-    print(strip_sentence_v1(test[0]))
+
+    #corpus_sents = brown.tagged_sents('cl13') #mystery
+    #corpus_sents = brown.tagged_sents(categories='mystery')
+    # mystery = brown.tagged_sents(categories='mystery')
+    # romance = brown.tagged_sents(categories='romance')
+    # fiction = brown.tagged_sents(categories='ficiton')
+    # adventure = brown.tagged_sents(categories='adventure')
+    # lore = brown.tagged_sents(categories='lore')
+    # science_fiction = brown.tagged_sents(categories='science_fiction')
+    # religion = brown.tagged_sents(categories='religion')
+    corpus_sents = brown.tagged_sents(categories=['mystery','romance','ficiton','adventure','lore','science_fiction','religion','humor'])
 
     my_dict = {}
+    my_dict = temp_insert_corpus(my_dict, corpus_sents)
 
-    temp_array = strip_sentence_v1(test[0])
+    # for sentence in corpus_sents:
+    #     strip_arr = strip_sentence_v1(sentence)
+    #     print('mylooptest')
+    #     print(sentence)
+    #     print(strip_arr)
+    #     print(strip_arr[0])
+    #     break
 
-    for i in range(1, len(temp_array)):
-        insert_verb_object(my_dict, temp_array[0], temp_array[i])
+    # for sentence in corpus_sents:
+    #     strip_arr = strip_sentence_v1(sentence)
+    #
+    #     if (len(strip_arr) >= 2):
+    #         filtered = filter_noun(strip_arr[0])
+    #
+    #     for i in range(1, len(strip_arr)):
+    #         insert_verb_object(my_dict, filtered, filter_verb(strip_arr[i]))
+    #
+    # print(my_dict)
 
-    print(my_dict)
-    #for sentence in test:
 
     #write dictionary to json file
     with open('newdata.json', 'w') as outfile:
