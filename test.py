@@ -23,6 +23,7 @@ def find_next_verb(noun_index, sentence, singular_noun, all_nouns):
             key = verb.infinitive(lower_cased_verb)
             #convert the verb into infinitive and lower cased form to insert into dictionary
 
+
             default_temp_dict = dict()
             default = default_temp_dict
             #if the noun form has changed and is not in the dictionary.
@@ -37,6 +38,7 @@ def find_next_verb(noun_index, sentence, singular_noun, all_nouns):
             all_nouns[singular_noun] = temp_dict
             break
             #only get the next verb after the noun, not all verbs in sentence
+
 
 def main():
     #sentence_list = gutenberg.sents('austen-emma.txt')
