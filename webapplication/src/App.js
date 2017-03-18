@@ -1,44 +1,44 @@
 import React, { Component } from 'react';
 import data from '../public/newdata.json';
+import styled from 'styled-components';
 
+import NounInput from './components/NounInput.js'
 
-import './App.css';
+const Title = styled.h1`
+  text-align: center;
+`;
+
+const Body = styled.div`
+  margin: 10px 20px 10px 20px;
+
+`;
 
 class App extends Component {
   constructor(){
     super();
 
-    this.collection = data;
 
-    /*
-      This code is responsible for setting up our data store.
-      We read in the data from seed.json and place it in this Map object.
-
-      The Map is a data structure that stores key value pairs. In this instance,
-      the keys are sections and the values are arrays of the articles that
-      appear in each section. Note that the section is determined by the first
-      letter of the article's title.
-
-      The Map does return keys in the order they are created, by the original
-      article store is not in order, so you will need to sort both the section
-      headings and the titles when you display them.
-      */
-
-
-    console.log('hi');
-
+    //discovered how to do this from stack overflow
+    this.nouns = new Map();
+    Object.keys(data).forEach(key => {
+      this.nouns.set(key, data[key]);
+    })
 
 
   }
   render() {
-    /* This is where you need to setup the view for the page */
 
     return(
     <div>
+      <Title>Noun Verb Associator</Title>
+      <Body>
+        <NounInput associate={this.nouns}/>
+      </Body>
     </div>
   )
-
+  
   }
 }
+
 
 export default App;

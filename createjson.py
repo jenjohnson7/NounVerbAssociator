@@ -93,8 +93,8 @@ def filter_verb(verb):
 def create_verb_object(verb):
     '''
     Parameters: verb (string)
-    Returns: verb_object (dict/obj)
-    Creates verb_object (dict/obj with keys 'verb' 'freq')
+    Returns: verb_object (obj)
+    Creates verb_object (obj with keys 'verb' 'freq')
 
     Note: called by insert_verb_object
     '''
