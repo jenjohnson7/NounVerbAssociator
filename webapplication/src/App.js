@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import data from '../public/newdata.json';
+import data from '../public/newdata_filtered.json';
 import styled from 'styled-components';
 
 import NounInput from './components/NounInput.js'
@@ -36,7 +36,7 @@ class App extends Component {
       </Body>
     </div>
   )
-  
+
   }
 }
 

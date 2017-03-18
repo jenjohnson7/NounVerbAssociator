@@ -9,6 +9,7 @@ from nltk import sent_tokenize
 from nltk import pos_tag
 import operator
 from collections import OrderedDict
+from en import verb, noun
 
 def find_next_verb(noun_index, sentence, singular_noun, all_nouns):
     current_pos = "NN"
@@ -61,7 +62,7 @@ def strip_sentence_v1(sentence):
 
     return stripped_sent
 
-def filter_noun(noun):
+def filter_noun(input_noun):
     '''
     Parameters: noun (string)
     Returns: noun (string)
@@ -70,23 +71,23 @@ def filter_noun(noun):
     #proper nouns can be ignored if we make sure that the NN tagging is not NNP
     #this would also solve the case for POS because POS would be NNP if not POS
 
-    #noun = noun.singular(noun) <== need en library
-    noun = noun.lower()
+    lowered_noun = input_noun.lower()
+    result_noun = noun.singular(lowered_noun) #<== need en library
     #noun = noun.strip(string.punctuation) #to remove trailing punctuation that
                                         # I have noticed sometimes appears
-    return noun
+    return result_noun
 
 
-def filter_verb(verb):
+def filter_verb(input_verb):
     '''
     Parameters: verb (string)
     Returns: verb (string)
     Takes a verb, converts it to infinitive, and lowers it's case.
     '''
-    #verb = verb.infinitive(lower_cased_verb) <== need en library
-    verb = verb.lower()
+    inf_verb = verb.infinitive(input_verb) #<== need en library
+    result_verb = inf_verb.lower()
 
-    return verb
+    return result_verb
 
 #this is where we would want to add additional scoping pertaining to type of manner,
 #definition, or anything beyond verb and frequency.
@@ -205,7 +206,7 @@ def main():
 
 
     #write dictionary to json file
-    with open('newdata.json', 'w') as outfile:
+    with open('newdata_filtered.json', 'w') as outfile:
         json.dump(my_dict, outfile)
 
 if __name__ == "__main__":
