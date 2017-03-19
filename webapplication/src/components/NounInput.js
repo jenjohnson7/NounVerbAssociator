@@ -10,6 +10,11 @@ const Col = styled.ul`
   list-style-type: none;
 `;
 
+const TopPadding = styled.div`
+  padding-top: 20px;
+
+`;
+
 function VerbList(props){
 
   let list;
@@ -49,29 +54,44 @@ class NounInput extends Component{
       </input>
     );
 
-    let verbPool = (
-      <button
-        type='button'
-        onClick={()=>{
-          let verbDisplay;
-          if (this.props.associate.has(this.state.noun.toLowerCase())){
-            verbDisplay = (<VerbList associate={this.props.associate} noun={this.state.noun.toLowerCase()} />);
-            this.setState({display: verbDisplay});
-        }else{
-          verbDisplay = (<p> Sorry, the word "{this.state.noun}" has not been found in our corpus </p>);
-          this.setState({display: verbDisplay});
-        }
+    let verbDisplay;
 
-      }}>Enter</button>
-    );
+    if (this.props.associate.has(this.state.noun.toLowerCase())){
+      verbDisplay = (<VerbList associate={this.props.associate} noun={this.state.noun.toLowerCase()} />);
+
+    }else if (this.state.noun === ''){
+      verbDisplay = (<p> Please enter a singular noun.</p>);
+
+    }else{
+      verbDisplay = (<p> Sorry, the word "{this.state.noun}" has not been found in our corpus </p>);
+    }
+
+
+    //deprecated enter button that we removed for now.
+    // let verbPool = (
+    //   <button
+    //     type='button'
+    //     onClick={()=>{
+    //       let verbDisplay;
+    //
+    //       if (this.props.associate.has(this.state.noun.toLowerCase())){
+    //         verbDisplay = (<VerbList associate={this.props.associate} noun={this.state.noun.toLowerCase()} />);
+    //         this.setState({display: verbDisplay});
+    //
+    //       }else{
+    //         verbDisplay = (<p> Sorry, the word "{this.state.noun}" has not been found in our corpus </p>);
+    //         this.setState({display: verbDisplay});
+    //       }
+    //
+    //   }}>Enter</button>
+    // );
 
 
     return (
-      <div>
+      <TopPadding>
       {inputBar}
-      {verbPool}
-      {this.state.display}
-      </div>
+      {verbDisplay}
+      </TopPadding>
 
     )
   }

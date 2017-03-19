@@ -2,6 +2,8 @@ import sys
 import json
 import string
 
+import tokenizer_test
+
 from nltk.corpus import brown
 from nltk.corpus import gutenberg
 #from nltk.corpus import gutenberg
@@ -10,41 +12,17 @@ from nltk import pos_tag
 import operator
 from collections import OrderedDict
 
-def find_next_verb(noun_index, sentence, singular_noun, all_nouns):
-    current_pos = "NN"
-    for next_word in range (noun_index+1, len(sentence)):
-        #starting from the next index, get pos
-        word = sentence[next_word]
-        text = [word]
-        #must call pos_tag on a list, otherwise it will pos_tag each letter
-        word_and_pos = pos_tag(text)
-        current_pos = word_and_pos[0][1]
-        if current_pos[0] == "V":
-            #if pos is verb of any tense
-            lower_cased_verb = word.lower()
-            key = lower_cased_verb #en #edited
-            #convert the verb into infinitive and lower cased form to insert into dictionary
-
-            default_temp_dict = dict()
-            default = default_temp_dict
-            #if the noun form has changed and is not in the dictionary.
-            #exception catcher: Atlanta's vs Atlanta
-            temp_dict = all_nouns.setdefault(singular_noun, default)
-
-            if key in temp_dict:
-                #add/update its frequency in the dictionary
-                temp_dict[key]+=1
-            else:
-                temp_dict[key]=1
-            all_nouns[singular_noun] = temp_dict
-            break
-            #only get the next verb after the noun, not all verbs in sentence
-
 def strip_sentence_v1(sentence):
     '''
     Parameters: sentence [tokenized and speech tagged sentence (should be
         array of tuples)]
     Return: array with noun in a[0] and verbs following it.
+
+    Takes a tokenized sentence and strips down into a single array where index
+    0 contains the first appearing noun and the subsequent elements are the
+    following verbs in the sentence.
+
+    Takes first noun and all following verbs
     '''
     found = False #if noun has been found, don't find other nouns
     stripped_sent = []
@@ -52,16 +30,40 @@ def strip_sentence_v1(sentence):
     for pairs in sentence: #pairs are just word and pos pairs
         #print(pairs)
 
-        if (pairs[1] == 'NN') and (not found): #checking for noun
+        #NN=singular noun, NNS=plural noun, NNPS= proper noun plural
+        if (pairs[1] == 'NN' or pairs[1] == 'NNS' or pairs[1] == 'NNPS') and (not found): #checking for noun
             stripped_sent.append(pairs[0])
             found = True
 
-        elif (pairs[1] == 'VBD') and (found): #checking for subsequent verbs
+        elif (pairs[1][0] == 'V') and (found): #checking for subsequent verbs
             stripped_sent.append(pairs[0])
 
     return stripped_sent
 
-def filter_noun(noun):
+def strip_sentence_v2(sentence):
+    '''
+    Parameters: sentece [tokenized and speech tagged sentence (array of tuples)]
+    Returns: an array where 0,2,4,etc... are nouns and odds are verbs.
+
+    Finds each noun in the sentence and stores the immediate following verb.
+    '''
+    find_noun = True #true means to search for noun, false means search for verb
+    stripped_sent = []
+
+    for pairs in sentence:
+
+        if (pairs[1] == 'NN' or pairs[1] == 'NNS' or pairs[1] == 'NNPS') and (find_noun):
+            stripped_sent.append(pairs[0])
+            find_noun = False
+
+        elif (pairs[1][0] == 'V') and not (find_noun):
+            stripped_sent.append(pairs[0])
+            find_noun = True
+
+    return stripped_sent
+
+
+def filter_noun(input_noun):
     '''
     Parameters: noun (string)
     Returns: noun (string)
@@ -70,23 +72,23 @@ def filter_noun(noun):
     #proper nouns can be ignored if we make sure that the NN tagging is not NNP
     #this would also solve the case for POS because POS would be NNP if not POS
 
-    #noun = noun.singular(noun) <== need en library
-    noun = noun.lower()
+    #input_noun = noun.singular(input_noun) <== need en library
+    input_noun = input_noun.lower()
     #noun = noun.strip(string.punctuation) #to remove trailing punctuation that
                                         # I have noticed sometimes appears
-    return noun
+    return input_noun
 
 
-def filter_verb(verb):
+def filter_verb(input_verb):
     '''
     Parameters: verb (string)
     Returns: verb (string)
     Takes a verb, converts it to infinitive, and lowers it's case.
     '''
-    #verb = verb.infinitive(lower_cased_verb) <== need en library
-    verb = verb.lower()
+    #input_verb = verb.infinitive(input_verb) #<== need en library
+    input_verb = input_verb.lower()
 
-    return verb
+    return input_verb
 
 #this is where we would want to add additional scoping pertaining to type of manner,
 #definition, or anything beyond verb and frequency.
@@ -136,10 +138,10 @@ def insert_verb_object(my_dict, noun, verb):
 
     return my_dict
 
-def temp_insert_corpus(my_dict, corpus_sents):
+def insert_corpus_v1(my_dict, corpus_sents):
     '''
     Parameters: my_dict (dict), corpus_sents (array of tokenized POS sentences)
-    Noel's temporary corpus inserting function
+    Inserts tokenized POS sentences into my_dict using version 1 method.
     '''
     for sentence in corpus_sents:
         strip_arr = strip_sentence_v1(sentence)
@@ -147,8 +149,27 @@ def temp_insert_corpus(my_dict, corpus_sents):
         if (len(strip_arr) >= 2):
             filtered = filter_noun(strip_arr[0])
 
-        for i in range(1, len(strip_arr)):
+        for i in range(1, len(strip_arr)): #checking for the verbs
             insert_verb_object(my_dict, filtered, filter_verb(strip_arr[i]))
+
+    return my_dict
+
+def insert_corpus_v2(my_dict, corpus_sents):
+    '''
+    Parameters: my_dict (dict), corpus_sents (array of tokenized POS sentences)
+    Returns: my_dict
+    Inserts tokenized POS sentences into my_dict using version 2 method.
+    '''
+    for sentence in corpus_sents:
+        strip_arr = strip_sentence_v2(sentence)
+
+        length = len(strip_arr)
+        if (length % 2 == 1): #cutting off the final verb or noun to make the array even size
+            length = length - 1
+
+        for i in range(0, length, 2): #starting at 0 and increasing i by 2
+            insert_verb_object(my_dict, filter_noun(strip_arr[i]), filter_verb(strip_arr[i+1]))
+            #print(filter_noun(strip_arr[i]))
 
     return my_dict
 
@@ -160,53 +181,28 @@ def main():
     #sentence_list = brown.sents('cm01') #sci-fi
     '''
 
-
-    ##test = brown.tagged_sents(categories='mystery')
-    # print(test[0])
-    # print('This is my break \n \n')
-    # print(test[0][0])
-    # print('\n \n')
-    # print(test[0][0][0])
-    #
-    # print('\n\n')
-
-    #corpus_sents = brown.tagged_sents('cl13') #mystery
-    #corpus_sents = brown.tagged_sents(categories='mystery')
-    # mystery = brown.tagged_sents(categories='mystery')
-    # romance = brown.tagged_sents(categories='romance')
-    # fiction = brown.tagged_sents(categories='ficiton')
-    # adventure = brown.tagged_sents(categories='adventure')
-    # lore = brown.tagged_sents(categories='lore')
-    # science_fiction = brown.tagged_sents(categories='science_fiction')
-    # religion = brown.tagged_sents(categories='religion')
     corpus_sents = brown.tagged_sents(categories=['mystery','romance','ficiton','adventure','lore','science_fiction','religion','humor'])
+    corpus_sents2 = tokenizer_test.read_from_file('document.txt')
+    print(corpus_sents2)
 
-    my_dict = {}
-    my_dict = temp_insert_corpus(my_dict, corpus_sents)
+    my_dict_jen = {}
+    my_dict_jen = insert_corpus_v2(my_dict_jen, corpus_sents2)
 
-    # for sentence in corpus_sents:
-    #     strip_arr = strip_sentence_v1(sentence)
-    #     print('mylooptest')
-    #     print(sentence)
-    #     print(strip_arr)
-    #     print(strip_arr[0])
-    #     break
-
-    # for sentence in corpus_sents:
-    #     strip_arr = strip_sentence_v1(sentence)
+    # my_dict_v1 = {}
+    # my_dict_v2 = {}
     #
-    #     if (len(strip_arr) >= 2):
-    #         filtered = filter_noun(strip_arr[0])
-    #
-    #     for i in range(1, len(strip_arr)):
-    #         insert_verb_object(my_dict, filtered, filter_verb(strip_arr[i]))
-    #
-    # print(my_dict)
+    # my_dict_v1 = insert_corpus_v1(my_dict_v1, corpus_sents)
+    # my_dict_v2 = insert_corpus_v2(my_dict_v2, corpus_sents)
 
+    # #write dictionary to json file
+    # with open('datav1.json', 'w') as outfile:
+    #     json.dump(my_dict_v1, outfile)
+    #
+    # with open('datav2.json', 'w') as outfile:
+    #     json.dump(my_dict_v2, outfile)
 
-    #write dictionary to json file
-    with open('newdata.json', 'w') as outfile:
-        json.dump(my_dict, outfile)
+    with open('mouse.json','w') as outfile:
+        json.dump(my_dict_jen, outfile)
 
 if __name__ == "__main__":
     main()
