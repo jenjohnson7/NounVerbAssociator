@@ -6,7 +6,7 @@ import tokenizer_test
 
 from nltk.corpus import brown
 from nltk.corpus import gutenberg
-#from nltk.corpus import gutenberg
+from nltk.corpus import gutenberg
 from nltk import sent_tokenize
 from nltk import pos_tag
 import operator
@@ -312,9 +312,10 @@ def main():
 
     corpus_sents = brown.tagged_sents(categories=['mystery','romance','ficiton','adventure','lore','science_fiction','religion','humor'])
     corpus_sents2 = tokenizer_test.read_from_file('document.txt')
+    corpus_sents3 = tokenizer_test.read_from_file('45.txt')
 
-    #my_dict_jen = {}
-    #my_dict_jen = insert_corpus_v2(my_dict_jen, corpus_sents2)
+    my_dict_jen = {}
+    my_dict_jen = insert_corpus_v2(my_dict_jen, corpus_sents2)
 
     my_dict_v1 = {}
     my_dict_v2 = {}
@@ -322,17 +323,20 @@ def main():
     my_dict_v4 = {}
     my_dict_v5 = {}
     #
-    # my_dict_v1 = insert_corpus_v1(my_dict_v1, corpus_sents)
+    #my_dict_v1 = insert_corpus_v1(my_dict_v1, corpus_sents)
     # my_dict_v2 = insert_corpus_v2(my_dict_v2, corpus_sents)
     # my_dict_v3 = insert_corpus_v3(my_dict_v3, corpus_sents)
-    my_dict_v4 = insert_corpus_v4(my_dict_v4, corpus_sents)
+    #my_dict_v4 = insert_corpus_v4(my_dict_v4, corpus_sents)
     # my_dict_v5 = insert_corpus_v5(my_dict_v5, corpus_sents)
 
     # my_dict_v3 = insert_corpus_v3(my_dict_v3, corpus_sents2)
     # my_dict_v4 = insert_corpus_v4(my_dict_v4, corpus_sents2)
     # my_dict_v5 = insert_corpus_v5(my_dict_v5, corpus_sents2)
 
-    # #write dictionary to json file
+    #my_dict_v1 = insert_corpus_v1(my_dict_v1, corpus_sents3)
+    #my_dict_v2 = insert_corpus_v2(my_dict_v2, corpus_sents3)
+
+    #write dictionary to json file
     # with open('datav1.json', 'w') as outfile:
     #     json.dump(my_dict_v1, outfile)
     #
@@ -342,14 +346,14 @@ def main():
     # with open('datav3.json', 'w') as outfile:
     #     json.dump(my_dict_v3, outfile)
 
-    with open('datav4.json', 'w') as outfile:
-        json.dump(my_dict_v4, outfile)
+    # with open('datav4.json', 'w') as outfile:
+    #     json.dump(my_dict_v4, outfile)
 
     # with open('datav5.json', 'w') as outfile:
     #     json.dump(my_dict_v5, outfile)
 
-    # with open('mouse.json','w') as outfile:
-    #     json.dump(my_dict_jen, outfile)
+    with open('moose.json','w') as outfile:
+        json.dump(my_dict_jen, outfile)
 
 
 if __name__ == "__main__":
