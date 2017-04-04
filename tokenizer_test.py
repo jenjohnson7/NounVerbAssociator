@@ -37,6 +37,26 @@ def read_from_file(file_name):
     #print(sentence_array)
     return sentence_array
 
+def read_from_raw(raw):
+    sentences = sent_tokenize(raw)
+    read_from_file_corpus = []
+    sentence_array = []
+    for sentence in sentences:
+        # temp = []
+
+        words = word_tokenize(sentence)
+        word_and_pos = pos_tag(words)
+
+
+        #read_from_file_corpus.append(temp)
+        sentence_array.append(word_and_pos)
+
+    #read_from_file_corpus.append(sentence_array)
+
+    #print(sentence_array)
+    return sentence_array
+
+
 def main():
     #calls read_from_file
     sentence_array = read_from_file()

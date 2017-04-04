@@ -25,6 +25,9 @@ class DataVersion extends Component{
       <select value={this.props.version} onChange={(event)=>this.props.setVersion(event.target.value)}>
       <option value='version1'>Version 1</option>
       <option value='version2'>Version 2</option>
+      <option value='version3'>Version 3</option>
+      <option value='version4'>Version 4</option>
+      <option value='version5'>Version 5</option>
       <option value='mouse'>Mouse</option>
       </select>
     );
@@ -37,8 +40,17 @@ class DataVersion extends Component{
     }else if (this.props.version === 'version2'){
       description = (<span> = take each noun followed by its immediate verb. </span>);
 
+    }else if (this.props.version === 'version3'){
+      description = (<span> = takes all nouns to all verbs in sentence. </span>);
+
+    }else if (this.props.version === 'version4'){
+      description = (<span> = takes each noun and its following verbs until next noun. </span>);
+
+    }else if (this.props.version === 'version5'){
+      description = (<span> = takes all nouns to all following verbs in sentence. </span>);
+
     }else if (this.props.version === 'mouse'){
-      description = (<span> = version 1 test of our self-tokenized sentence of If You Give a Mouse a Cookie</span>)
+      description = (<span> = version 2 test of our self-tokenized sentence of If You Give a Mouse a Cookie</span>)
     }
 
     return (<div>{versionPicker}{description}</div>);

@@ -340,6 +340,17 @@ def main():
     # with open('datav2.json', 'w') as outfile:
     #     json.dump(my_dict_v2, outfile)
 
+    # my_dict_v3 = insert_corpus_v3(my_dict_v3, corpus_sents2)
+    # my_dict_v4 = insert_corpus_v4(my_dict_v4, corpus_sents2)
+    # my_dict_v5 = insert_corpus_v5(my_dict_v5, corpus_sents2)
+
+    # #write dictionary to json file
+    # with open('datav1.json', 'w') as outfile:
+    #     json.dump(my_dict_v1, outfile)
+    #
+    # with open('datav2.json', 'w') as outfile:
+    #     json.dump(my_dict_v2, outfile)
+    #
     # with open('datav3.json', 'w') as outfile:
     #     json.dump(my_dict_v3, outfile)
 
