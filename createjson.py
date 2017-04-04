@@ -314,27 +314,24 @@ def main():
     corpus_sents2 = tokenizer_test.read_from_file('document.txt')
     corpus_sents3 = tokenizer_test.read_from_file('45.txt')
 
-    my_dict_jen = {}
-    my_dict_jen = insert_corpus_v2(my_dict_jen, corpus_sents2)
+    # my_dict_jen = {}
+    # my_dict_jen = insert_corpus_v2(my_dict_jen, corpus_sents2)
 
-    my_dict_v1 = {}
-    my_dict_v2 = {}
-    my_dict_v3 = {}
-    my_dict_v4 = {}
-    my_dict_v5 = {}
+    # my_dict_v1 = {}
+    # my_dict_v2 = {}
+    # my_dict_v3 = {}
+    # my_dict_v4 = {}
+    # my_dict_v5 = {}
     #
     #my_dict_v1 = insert_corpus_v1(my_dict_v1, corpus_sents)
     # my_dict_v2 = insert_corpus_v2(my_dict_v2, corpus_sents)
     # my_dict_v3 = insert_corpus_v3(my_dict_v3, corpus_sents)
     #my_dict_v4 = insert_corpus_v4(my_dict_v4, corpus_sents)
+
+    data_dict = {}
+    data_dict = insert_corpus_v4(data_dict, corpus_sents3)
+
     # my_dict_v5 = insert_corpus_v5(my_dict_v5, corpus_sents)
-
-    # my_dict_v3 = insert_corpus_v3(my_dict_v3, corpus_sents2)
-    # my_dict_v4 = insert_corpus_v4(my_dict_v4, corpus_sents2)
-    # my_dict_v5 = insert_corpus_v5(my_dict_v5, corpus_sents2)
-
-    #my_dict_v1 = insert_corpus_v1(my_dict_v1, corpus_sents3)
-    #my_dict_v2 = insert_corpus_v2(my_dict_v2, corpus_sents3)
 
     #write dictionary to json file
     # with open('datav1.json', 'w') as outfile:
@@ -354,6 +351,9 @@ def main():
 
     with open('moose.json','w') as outfile:
         json.dump(my_dict_jen, outfile)
+
+    with open('2148.json','w') as outfile:
+        json.dump(data_dict, outfile)
 
 
 if __name__ == "__main__":

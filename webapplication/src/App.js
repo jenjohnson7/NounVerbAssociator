@@ -1,8 +1,4 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import data from '../public/newdata_filtered.json';
-=======
->>>>>>> 1cee6cd34b935d719673665a997e07e6dec089bc
 import styled from 'styled-components';
 
 //data types that will later be changed to database

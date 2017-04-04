@@ -38,9 +38,16 @@ def merge(file_name_array):
 
 def main():
     file_name_array = []
-    file_name_array.append("mouse.json")
-    file_name_array.append("moose.json")
     #add files here
+    file_name_array.append("55.json")
+    file_name_array.append("120.json")
+    file_name_array.append("174.json")
+    file_name_array.append("236.json")
+    file_name_array.append("521.json")
+    file_name_array.append("730.json")
+    file_name_array.append("1661.json")
+    file_name_array.append("2148.json")
+
     final_data = merge(file_name_array)
 
     with open('merged.json','w') as outfile:
