@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-=======
-
->>>>>>> a4a6f3c6f08711eac074d95098b6a670b223a4e6
 import styled from 'styled-components';
 
 //data types that will later be changed to database
+
 import dataV1 from '../public/datav1.json';
 import dataV2 from '../public/datav2.json';
 //import dataV3 from '../public/datav3.json';
-import dataV4 from '../public/datav4.json';
+import dataV4 from '../public/merged.json';
 //import dataV5 from '../public/datav5.json';
 import mouse from '../public/mouse.json';
 
@@ -20,6 +17,7 @@ import DataVersion from './components/DataVersion.js'
 
 
 const Title = styled.h1`
+  color: blue;
   text-align: center;
 `;
 
@@ -27,6 +25,13 @@ const Body = styled.div`
   margin: 10px 20px 10px 20px;
 
 `;
+
+const Box = styled.div`
+  margin: 30px 30px 30px 30px
+  background-color: lightblue;
+  border: 2px solid blue;
+  border-radius: 5px;
+`
 
 class App extends Component {
   constructor(){
@@ -99,13 +104,13 @@ class App extends Component {
     }
 
     return(
-    <div>
+    <Box>
       <Title>Noun Verb Associator</Title>
       <Body>
         <DataVersion version={this.state.dataVersion} setVersion={(version)=>this.setState({dataVersion: version})} />
         {nounVerb}
       </Body>
-    </div>
+    </Box>
   )
 
   }
