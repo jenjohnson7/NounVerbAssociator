@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import data from '../public/newdata_filtered.json';
-=======
->>>>>>> 1cee6cd34b935d719673665a997e07e6dec089bc
+
 import styled from 'styled-components';
 
 //data types that will later be changed to database
 import dataV1 from '../public/datav1.json';
 import dataV2 from '../public/datav2.json';
+//import dataV3 from '../public/datav3.json';
+import dataV4 from '../public/datav4.json';
+//import dataV5 from '../public/datav5.json';
 import mouse from '../public/mouse.json';
 
 
@@ -44,6 +44,21 @@ class App extends Component {
     Object.keys(dataV2).forEach(key => {
       this.nounsV2.set(key, dataV2[key]);
     });
+    //
+    // this.nounsV3 = new Map();
+    // Object.keys(dataV3).forEach(key => {
+    //   this.nounsV3.set(key, dataV3[key]);
+    // });
+
+    this.nounsV4 = new Map();
+    Object.keys(dataV4).forEach(key => {
+      this.nounsV4.set(key, dataV4[key]);
+    });
+
+    // this.nounsV5 = new Map();
+    // Object.keys(dataV5).forEach(key => {
+    //   this.nounsV5.set(key, dataV5[key]);
+    // });
 
     this.mouse = new Map();
     Object.keys(mouse).forEach(key => {
@@ -65,6 +80,15 @@ class App extends Component {
 
     else if (this.state.dataVersion === 'version2'){
       nounVerb = (<NounInput associate={this.nounsV2}/>);
+    }
+    else if (this.state.dataVersion === 'version3'){
+      nounVerb = (<NounInput associate={this.nounsV3}/>);
+    }
+    else if (this.state.dataVersion === 'version4'){
+      nounVerb = (<NounInput associate={this.nounsV4}/>);
+    }
+    else if (this.state.dataVersion === 'version5'){
+      nounVerb = (<NounInput associate={this.nounsV5}/>);
     }
 
     else if (this.state.dataVersion === 'mouse'){

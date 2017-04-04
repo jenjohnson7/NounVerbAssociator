@@ -11,7 +11,7 @@ from nltk import sent_tokenize
 from nltk import pos_tag
 import operator
 from collections import OrderedDict
-from en import verb, noun
+#from en import verb, noun
 
 def strip_sentence_v1(sentence):
     '''
@@ -121,7 +121,7 @@ def filter_noun(input_noun):
     #proper nouns can be ignored if we make sure that the NN tagging is not NNP
     #this would also solve the case for POS because POS would be NNP if not POS
 
-    input_noun = noun.singular(input_noun) #<== need en library
+    #input_noun = noun.singular(input_noun) #<== need en library
     input_noun = input_noun.lower()
     #noun = noun.strip(string.punctuation) #to remove trailing punctuation that
                                         # I have noticed sometimes appears
@@ -134,7 +134,7 @@ def filter_verb(input_verb):
     Takes a verb, converts it to infinitive, and lowers it's case.
     '''
 
-    input_verb = verb.infinitive(input_verb) #<== need en library
+    #input_verb = verb.infinitive(input_verb) #<== need en library
     input_verb = input_verb.lower()
 
     return input_verb
@@ -310,8 +310,8 @@ def main():
     #sentence_list = brown.sents('cm01') #sci-fi
     '''
 
-    corpus_sents = brown.tagged_sents(categories=['mystery','romance','ficiton','adventure','lore','science_fiction','religion','humor'])
-    corpus_sents2 = tokenizer_test.read_from_file('document.txt')
+    #corpus_sents = brown.tagged_sents(categories=['mystery','romance','ficiton','adventure','lore','science_fiction','religion','humor'])
+    #corpus_sents2 = tokenizer_test.read_from_file('document.txt')
 
     #my_dict_jen = {}
     #my_dict_jen = insert_corpus_v2(my_dict_jen, corpus_sents2)
@@ -321,32 +321,38 @@ def main():
     my_dict_v3 = {}
     my_dict_v4 = {}
     my_dict_v5 = {}
-    #
+
+    #print(gutenberg.fileids())
+    for fileid in gutenberg.fileids():
+        corpus_sents = tokenizer_test.read_from_raw(gutenberg.raw(fileid))
+        my_dict_v1 = insert_corpus_v1(my_dict_v1, corpus_sents)
+
+
     # my_dict_v1 = insert_corpus_v1(my_dict_v1, corpus_sents)
-    # my_dict_v2 = insert_corpus_v2(my_dict_v2, corpus_sents)
-    # my_dict_v3 = insert_corpus_v3(my_dict_v3, corpus_sents)
-    my_dict_v4 = insert_corpus_v4(my_dict_v4, corpus_sents)
-    # my_dict_v5 = insert_corpus_v5(my_dict_v5, corpus_sents)
+        my_dict_v2 = insert_corpus_v2(my_dict_v2, corpus_sents)
+        my_dict_v3 = insert_corpus_v3(my_dict_v3, corpus_sents)
+        my_dict_v4 = insert_corpus_v4(my_dict_v4, corpus_sents)
+        my_dict_v5 = insert_corpus_v5(my_dict_v5, corpus_sents)
 
     # my_dict_v3 = insert_corpus_v3(my_dict_v3, corpus_sents2)
     # my_dict_v4 = insert_corpus_v4(my_dict_v4, corpus_sents2)
     # my_dict_v5 = insert_corpus_v5(my_dict_v5, corpus_sents2)
 
     # #write dictionary to json file
-    # with open('datav1.json', 'w') as outfile:
-    #     json.dump(my_dict_v1, outfile)
-    #
-    # with open('datav2.json', 'w') as outfile:
-    #     json.dump(my_dict_v2, outfile)
+    with open('datav1.json', 'w') as outfile:
+        json.dump(my_dict_v1, outfile)
 
-    # with open('datav3.json', 'w') as outfile:
-    #     json.dump(my_dict_v3, outfile)
+    with open('datav2.json', 'w') as outfile:
+        json.dump(my_dict_v2, outfile)
+
+    with open('datav3.json', 'w') as outfile:
+        json.dump(my_dict_v3, outfile)
 
     with open('datav4.json', 'w') as outfile:
         json.dump(my_dict_v4, outfile)
 
-    # with open('datav5.json', 'w') as outfile:
-    #     json.dump(my_dict_v5, outfile)
+    with open('datav5.json', 'w') as outfile:
+        json.dump(my_dict_v5, outfile)
 
     # with open('mouse.json','w') as outfile:
     #     json.dump(my_dict_jen, outfile)
