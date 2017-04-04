@@ -310,22 +310,26 @@ def main():
     #sentence_list = brown.sents('cm01') #sci-fi
     '''
 
-    corpus_sents = brown.tagged_sents(categories=['mystery','romance','ficiton','adventure','lore','science_fiction','religion','humor'])
-    corpus_sents2 = tokenizer_test.read_from_file('document.txt')
+    #corpus_sents = brown.tagged_sents(categories=['mystery','romance','ficiton','adventure','lore','science_fiction','religion','humor'])
+    #corpus_sents2 = tokenizer_test.read_from_file('document.txt')
+    corpus_sents3 = tokenizer_test.read_from_file('2148.txt')
 
     #my_dict_jen = {}
     #my_dict_jen = insert_corpus_v2(my_dict_jen, corpus_sents2)
 
-    my_dict_v1 = {}
-    my_dict_v2 = {}
-    my_dict_v3 = {}
-    my_dict_v4 = {}
-    my_dict_v5 = {}
-    #
+    # my_dict_v1 = {}
+    # my_dict_v2 = {}
+    # my_dict_v3 = {}
+    # my_dict_v4 = {}
+    # my_dict_v5 = {}
+
+    data_dict = {}
+    data_dict = insert_corpus_v4(data_dict, corpus_sents3)
+
     # my_dict_v1 = insert_corpus_v1(my_dict_v1, corpus_sents)
     # my_dict_v2 = insert_corpus_v2(my_dict_v2, corpus_sents)
     # my_dict_v3 = insert_corpus_v3(my_dict_v3, corpus_sents)
-    my_dict_v4 = insert_corpus_v4(my_dict_v4, corpus_sents)
+    # my_dict_v4 = insert_corpus_v4(my_dict_v4, corpus_sents)
     # my_dict_v5 = insert_corpus_v5(my_dict_v5, corpus_sents)
 
     # my_dict_v3 = insert_corpus_v3(my_dict_v3, corpus_sents2)
@@ -342,14 +346,17 @@ def main():
     # with open('datav3.json', 'w') as outfile:
     #     json.dump(my_dict_v3, outfile)
 
-    with open('datav4.json', 'w') as outfile:
-        json.dump(my_dict_v4, outfile)
+    # with open('datav4.json', 'w') as outfile:
+    #     json.dump(my_dict_v4, outfile)
 
     # with open('datav5.json', 'w') as outfile:
     #     json.dump(my_dict_v5, outfile)
 
     # with open('mouse.json','w') as outfile:
     #     json.dump(my_dict_jen, outfile)
+
+    with open('2148.json','w') as outfile:
+        json.dump(data_dict, outfile)
 
 
 if __name__ == "__main__":
