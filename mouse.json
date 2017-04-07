@@ -1,1 +1,40 @@
-{"trim": [{"freq": 1, "verb": "want"}], "picture": [{"freq": 1, "verb": "is"}], "chances": [{"freq": 1, "verb": "are"}], "pictures": [{"freq": 1, "verb": "get"}], "broom": [{"freq": 1, "verb": "sweep"}], "drawing": [{"freq": 1, "verb": "stand"}], "hair": [{"freq": 1, "verb": "needs"}], "glass": [{"freq": 1, "verb": "'s"}], "books": [{"freq": 1, "verb": "ask"}], "cookie": [{"freq": 1, "verb": "go"}], "mirror": [{"freq": 1, "verb": "make"}, {"freq": 1, "verb": "notice"}], "mouse": [{"freq": 1, "verb": "is"}], "milk": [{"freq": 1, "verb": "ask"}], "refrigerator": [{"freq": 1, "verb": "remind"}]}
+{
+	"mouse": [{
+		"freq": 1,
+		"verb": "want"
+	}],
+	"moose": [{
+		"freq": 1,
+		"verb": "plod"
+	}],
+	"milk": [{
+		"freq": 1,
+		"verb": "drink"
+	}, {
+		"freq": 1,
+		"verb": "bubble"
+	}],
+	"tea": [{
+		"freq": 1,
+		"verb": "drink"
+	}],
+	"boy": [{
+		"freq": 1,
+		"verb": "clap"
+	}, {
+		"freq": 1,
+		"verb": "shout"
+	}],
+	"water": [{
+		"freq": 1,
+		"verb": "fall"
+	}],
+	"light": [{
+		"freq": 2,
+		"verb": "flicker"
+	}],
+	"leaf": [{
+		"freq": 1,
+		"verb": "rustle"
+	}]
+}

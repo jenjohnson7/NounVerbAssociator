@@ -3,7 +3,6 @@ import json
 import string
 
 import tokenizer_test
-
 # from nltk.corpus import brown
 # from nltk.corpus import gutenberg
 # from nltk.corpus import gutenberg
@@ -12,6 +11,7 @@ from nltk import pos_tag
 import operator
 from collections import OrderedDict
 #from en import verb, noun
+from nltk.stem.wordnet import WordNetLemmatizer
 
 def strip_sentence_v1(sentence):
     '''
@@ -121,10 +121,11 @@ def filter_noun(input_noun):
     #proper nouns can be ignored if we make sure that the NN tagging is not NNP
     #this would also solve the case for POS because POS would be NNP if not POS
 
-    #input_noun = noun.singular(input_noun) #<== need en library
     input_noun = input_noun.lower()
-    #noun = noun.strip(string.punctuation) #to remove trailing punctuation that
-                                        # I have noticed sometimes appears
+    #noun = noun.strip(string.punctuation) #to remove trailing punctuation
+    noun = WordNetLemmatizer().lemmatize(input_noun,'n')
+    #make singular using nltk instead of en
+
     return input_noun
 
 def filter_verb(input_verb):
@@ -136,8 +137,9 @@ def filter_verb(input_verb):
 
     #input_verb = verb.infinitive(input_verb) #<== need en library
     input_verb = input_verb.lower()
+    verb = WordNetLemmatizer().lemmatize(input_verb,'v')
 
-    return input_verb
+    return verb
 
 #this is where we would want to add additional scoping pertaining to type of manner,
 #definition, or anything beyond verb and frequency.
@@ -311,11 +313,11 @@ def main():
     '''
 
     #corpus_sents = brown.tagged_sents(categories=['mystery','romance','ficiton','adventure','lore','science_fiction','religion','humor'])
-    corpus_sents2 = tokenizer_test.read_from_file('document.txt')
-    corpus_sents3 = tokenizer_test.read_from_file('2148.txt')
+    #corpus_sents2 = tokenizer_test.read_from_file('document.txt')
+    corpus_sents3 = tokenizer_test.read_from_file('textdatafolder/1661.txt')
 
-    my_dict_jen = {}
-    my_dict_jen = insert_corpus_v2(my_dict_jen, corpus_sents2)
+    # my_dict_jen = {}
+    # my_dict_jen = insert_corpus_v2(my_dict_jen, corpus_sents2)
 
     # my_dict_v1 = {}
     # my_dict_v2 = {}
@@ -363,7 +365,7 @@ def main():
     # with open('moose.json','w') as outfile:
     #     json.dump(my_dict_jen, outfile)
 
-    with open('2148.json','w') as outfile:
+    with open('textdatafolder/1661.json','w') as outfile:
         json.dump(data_dict, outfile)
 
 

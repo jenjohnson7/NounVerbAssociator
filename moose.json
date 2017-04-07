@@ -1,1 +1,40 @@
-{"scenery": [{"freq": 1, "verb": "is"}], "antlers": [{"freq": 1, "verb": "stick"}], "moose": [{"freq": 1, "verb": "want"}], "yard": [{"freq": 1, "verb": "see"}], "door": [{"freq": 1, "verb": "feels"}], "blackberries": [{"freq": 1, "verb": "remind"}], "chances": [{"freq": 1, "verb": "are"}], "muffin": [{"freq": 1, "verb": "want"}, {"freq": 1, "verb": "go"}], "sweater": [{"freq": 1, "verb": "notice"}], "puppets": [{"freq": 1, "verb": "used"}], "soap": [{"freq": 1, "verb": "wash"}], "buttons": [{"freq": 1, "verb": "is"}], "jam": [{"freq": 1, "verb": "go"}, {"freq": 1, "verb": "want"}], "something": [{"freq": 1, "verb": "cover"}], "sheet": [{"freq": 1, "verb": "remember"}, {"freq": 1, "verb": "clean"}, {"freq": 1, "verb": "dry"}], "button": [{"freq": 1, "verb": "remind"}], "store": [{"freq": 1, "verb": "get"}]}
+{
+	"mouse": [{
+		"freq": 1,
+		"verb": "play"
+	}, {
+		"freq": 1,
+		"verb": "flee"
+	}],
+	"moose": [{
+		"freq": 1,
+		"verb": "plod"
+	}],
+	"milk": [{
+		"freq": 1,
+		"verb": "bubble"
+	}],
+	"tea": [{
+		"freq": 1,
+		"verb": "drink"
+	}, {
+		"freq": 1,
+		"verb": "boil"
+	}],
+	"boy": [{
+		"freq": 1,
+		"verb": "sneer"
+	}],
+	"ball": [{
+		"freq": 1,
+		"verb": "bounce"
+	}],
+	"light": [{
+		"freq": 1,
+		"verb": "flicker"
+	}],
+	"leaf": [{
+		"freq": 2,
+		"verb": "rustle"
+	}]
+}
