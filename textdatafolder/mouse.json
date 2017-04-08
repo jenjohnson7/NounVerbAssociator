@@ -1,0 +1,40 @@
+{
+	"mouse": [{
+		"freq": 1,
+		"verb": "want"
+	}],
+	"moose": [{
+		"freq": 1,
+		"verb": "plod"
+	}],
+	"milk": [{
+		"freq": 1,
+		"verb": "drink"
+	}, {
+		"freq": 1,
+		"verb": "bubble"
+	}],
+	"tea": [{
+		"freq": 1,
+		"verb": "drink"
+	}],
+	"boy": [{
+		"freq": 1,
+		"verb": "clap"
+	}, {
+		"freq": 1,
+		"verb": "shout"
+	}],
+	"water": [{
+		"freq": 1,
+		"verb": "fall"
+	}],
+	"light": [{
+		"freq": 2,
+		"verb": "flicker"
+	}],
+	"leaf": [{
+		"freq": 1,
+		"verb": "rustle"
+	}]
+}

@@ -313,11 +313,11 @@ def main():
     '''
 
     #corpus_sents = brown.tagged_sents(categories=['mystery','romance','ficiton','adventure','lore','science_fiction','religion','humor'])
-    #corpus_sents2 = tokenizer_test.read_from_file('document.txt')
-    corpus_sents3 = tokenizer_test.read_from_file('textdatafolder/1661.txt')
+    corpus_sents2 = tokenizer_test.read_from_file('document.txt')
+    # corpus_sents3 = tokenizer_test.read_from_file('textdatafolder/1661.txt')
 
-    # my_dict_jen = {}
-    # my_dict_jen = insert_corpus_v2(my_dict_jen, corpus_sents2)
+    my_dict_jen = {}
+    my_dict_jen = insert_corpus_v2(my_dict_jen, corpus_sents2)
 
     # my_dict_v1 = {}
     # my_dict_v2 = {}
@@ -330,8 +330,8 @@ def main():
     # my_dict_v3 = insert_corpus_v3(my_dict_v3, corpus_sents)
     #my_dict_v4 = insert_corpus_v4(my_dict_v4, corpus_sents)
 
-    data_dict = {}
-    data_dict = insert_corpus_v4(data_dict, corpus_sents3)
+    # data_dict = {}
+    # data_dict = insert_corpus_v4(data_dict, corpus_sents3)
 
     # my_dict_v5 = insert_corpus_v5(my_dict_v5, corpus_sents)
 
@@ -362,11 +362,11 @@ def main():
     # with open('datav5.json', 'w') as outfile:
     #     json.dump(my_dict_v5, outfile)
 
-    # with open('moose.json','w') as outfile:
-    #     json.dump(my_dict_jen, outfile)
+    with open('moose.json','w') as outfile:
+        json.dump(my_dict_jen, outfile)
 
-    with open('textdatafolder/1661.json','w') as outfile:
-        json.dump(data_dict, outfile)
+    # with open('textdatafolder/1661.json','w') as outfile:
+    #     json.dump(data_dict, outfile)
 
 
 if __name__ == "__main__":
