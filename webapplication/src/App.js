@@ -31,6 +31,17 @@ const Box = styled.div`
   background-color: lightblue;
   border: 2px solid blue;
   border-radius: 5px;
+  opacity: 0.7;
+`
+
+const Background = styled.div`
+  padding-top: 1px;
+  padding-bottom: 100%;
+  height: 100%;
+  width: 100%;
+  background-image: url("https://webdesignjustforyou.com/p/wp-content/uploads/2013/08/bg.jpg");
+  background-position: left bottom;
+  background-attachment: fixed;
 `
 
 class App extends Component {
@@ -104,6 +115,7 @@ class App extends Component {
     }
 
     return(
+      <Background>
     <Box>
       <Title>Noun Verb Associator</Title>
       <Body>
@@ -111,6 +123,7 @@ class App extends Component {
         {nounVerb}
       </Body>
     </Box>
+    </Background>
   )
 
   }
