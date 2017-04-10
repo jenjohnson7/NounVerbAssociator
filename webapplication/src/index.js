@@ -7,3 +7,7 @@ ReactDOM.render(
   <App />,
   document.getElementById('root')
 );
+
+// window.onload = () => {
+//   ReactDOM.render(<App />, document.getElementById('root'));
+// };
