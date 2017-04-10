@@ -38,6 +38,7 @@ def merge(file_name_array):
 
 def main():
     file_name_array = []
+    #add files here
     file_name_array.append("55.json")
     file_name_array.append("120.json")
     file_name_array.append("174.json")
@@ -46,7 +47,7 @@ def main():
     file_name_array.append("730.json")
     file_name_array.append("1661.json")
     file_name_array.append("2148.json")
-    #add files here
+
     final_data = merge(file_name_array)
 
     with open('merged.json','w') as outfile:
