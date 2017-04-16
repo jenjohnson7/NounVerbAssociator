@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 //data types that will later be changed to database
 
-import dataV1 from '../public/datav1.json';
-import dataV2 from '../public/datav2.json';
+import dataV1 from '../public/merged.json';
+//import dataV2 from '../public/datav2.json';
 //import dataV3 from '../public/datav3.json';
-import dataV4 from '../public/merged.json';
+//import dataV4 from '../public/merged.json';
 //import dataV5 from '../public/datav5.json';
-import mouse from '../public/mouse.json';
+//import mouse from '../public/merged.json';
 
 
 //components
@@ -58,31 +58,31 @@ class App extends Component {
     Object.keys(dataV1).forEach(key => {
       this.nounsV1.set(key, dataV1[key]);
     });
-
-    this.nounsV2 = new Map();
-    Object.keys(dataV2).forEach(key => {
-      this.nounsV2.set(key, dataV2[key]);
-    });
+    //
+    // this.nounsV2 = new Map();
+    // Object.keys(dataV2).forEach(key => {
+    //   this.nounsV2.set(key, dataV2[key]);
+    // });
     //
     // this.nounsV3 = new Map();
     // Object.keys(dataV3).forEach(key => {
     //   this.nounsV3.set(key, dataV3[key]);
     // });
 
-    this.nounsV4 = new Map();
-    Object.keys(dataV4).forEach(key => {
-      this.nounsV4.set(key, dataV4[key]);
-    });
+    // this.nounsV4 = new Map();
+    // Object.keys(dataV4).forEach(key => {
+    //   this.nounsV4.set(key, dataV4[key]);
+    // });
 
     // this.nounsV5 = new Map();
     // Object.keys(dataV5).forEach(key => {
     //   this.nounsV5.set(key, dataV5[key]);
     // });
 
-    this.mouse = new Map();
-    Object.keys(mouse).forEach(key => {
-      this.mouse.set(key, mouse[key]);
-    });
+    // this.mouse = new Map();
+    // Object.keys(mouse).forEach(key => {
+    //   this.mouse.set(key, mouse[key]);
+    // });
 
     this.state = {
       dataVersion: 'version1'

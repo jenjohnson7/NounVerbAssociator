@@ -18,14 +18,28 @@ const TopPadding = styled.div`
 function VerbList(props){
 
   let list;
-  const verbs = props.associate.get(props.noun);
+  let verbs = props.associate.get(props.noun);
 
   /*
   This is where we would put the thing to sort by frequency
   */
 
+  if (props.sort === 'highFrequency'){
+    verbs.sort(((a,b) => {return b.freq - a.freq})); //sorts from greatest freq to lowest freq
+  }
+  else if (props.sort === 'lowFrequency'){
+    verbs.sort(((a,b) => {return a.freq - b.freq})); //sorts from lowest freq to greatest freq
+  }
+  else if (props.sort === 'alphabetically'){
+    verbs.sort(((a,b) => { //sorts alphabetically
+      if (a.verb < b.verb) {return -1;}
+      if (a.verb > b.verb) {return 1;}
+      return 0;}))
+  }
+
+  //within this mapping function include which items to map (I think)
   list = verbs.map((item)=> {return (<li key={item.verb}>{item.verb} {item.freq}</li>); });
-  console.log(list);
+  //console.log(list);
 
   return (
     <div>
@@ -40,7 +54,9 @@ class NounInput extends Component{
     super(props);
 
     this.state = {
-      noun: ''
+      noun: '',
+      displaying: '',
+      sort: 'alphabetically'
     }
   }
   render () {
@@ -54,42 +70,36 @@ class NounInput extends Component{
       </input>
     );
 
-    let verbDisplay;
+    let displayButton = (
+      <button type='button' onClick={()=> this.setState({displaying: this.state.noun})}>Search</button>
+    );
 
-    if (this.props.associate.has(this.state.noun.toLowerCase())){
-      verbDisplay = (<VerbList associate={this.props.associate} noun={this.state.noun.toLowerCase()} />);
+    let sortMethod = (
+      <select value={this.state.sort} onChange={(event)=>this.setState({sort: event.target.value})}>
+      <option value='alphabetically'>Alphabetically A-Z</option>
+      <option value='highFrequency'>Frequency (high to low)</option>
+      <option value='lowFrequency'>Frequency (low to high)</option>
+      </select>
+    );
 
-    }else if (this.state.noun === ''){
-      verbDisplay = (<p> Please enter a singular noun.</p>);
+    let verbDisplay = (<p> Please enter a singular noun.</p>);
 
-    }else{
-      verbDisplay = (<p> Sorry, the word "{this.state.noun}" has not been found in our corpus </p>);
+    //displaying verbs if displayButton was clicked
+    if (this.props.associate.has(this.state.displaying.toLowerCase())){
+      verbDisplay = (
+        <div>
+        <span>Sort verbs {sortMethod}</span>
+        <p>Associating <b>"{this.state.displaying}"</b> to:</p>
+        <VerbList associate={this.props.associate} noun={this.state.displaying.toLowerCase()} sort={this.state.sort}/>
+        </div>);
+
+    }else if (this.state.displaying !== ''){
+      verbDisplay = (<p>Sorry, the word "{this.state.displaying}" has not been found in our corpus. Please make sure the noun is spelled correctly and that it is singular. </p>);
     }
-
-
-    //deprecated enter button that we removed for now.
-    // let verbPool = (
-    //   <button
-    //     type='button'
-    //     onClick={()=>{
-    //       let verbDisplay;
-    //
-    //       if (this.props.associate.has(this.state.noun.toLowerCase())){
-    //         verbDisplay = (<VerbList associate={this.props.associate} noun={this.state.noun.toLowerCase()} />);
-    //         this.setState({display: verbDisplay});
-    //
-    //       }else{
-    //         verbDisplay = (<p> Sorry, the word "{this.state.noun}" has not been found in our corpus </p>);
-    //         this.setState({display: verbDisplay});
-    //       }
-    //
-    //   }}>Enter</button>
-    // );
-
 
     return (
       <TopPadding>
-      {inputBar}
+      {inputBar}{displayButton}
       {verbDisplay}
       </TopPadding>
 
