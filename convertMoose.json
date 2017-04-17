@@ -1,0 +1,19 @@
+[
+  {"assoc": [{"freq": 1, "verb": "notice"}], "noun": "sweater"},
+  {"assoc": [{"freq": 1, "verb": "feel"}], "noun": "door"},
+  {"assoc": [{"freq": 1, "verb": "go"}, {"freq": 1, "verb": "want"}], "noun": "jam"},
+  {"assoc": [{"freq": 1, "verb": "be"}], "noun": "scenery"},
+  {"assoc": [{"freq": 1, "verb": "get"}], "noun": "store"},
+  {"assoc": [{"freq": 1, "verb": "remember"}, {"freq": 1, "verb": "clean"}, {"freq": 1, "verb": "dry"}], "noun": "sheet"},
+  {"assoc": [{"freq": 1, "verb": "see"}], "noun": "yard"},
+  {"assoc": [{"freq": 1, "verb": "stick"}], "noun": "antlers"},
+  {"assoc": [{"freq": 1, "verb": "be"}], "noun": "chances"},
+  {"assoc": [{"freq": 1, "verb": "remind"}], "noun": "button"},
+  {"assoc": [{"freq": 1, "verb": "use"}], "noun": "puppets"},
+  {"assoc": [{"freq": 1, "verb": "want"}, {"freq": 1, "verb": "go"}], "noun": "muffin"},
+  {"assoc": [{"freq": 1, "verb": "cover"}], "noun": "something"},
+  {"assoc": [{"freq": 1, "verb": "be"}], "noun": "buttons"},
+  {"assoc": [{"freq": 1, "verb": "remind"}], "noun": "blackberries"},
+  {"assoc": [{"freq": 1, "verb": "wash"}], "noun": "soap"},
+  {"assoc": [{"freq": 5, "verb": "want"}], "noun": "moose"}
+]

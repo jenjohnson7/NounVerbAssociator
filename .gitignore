@@ -1,6 +1,6 @@
 /en
 /webapplication/node_modules
-
+/python/gutenberg
 
 .DS_Store
 .env
