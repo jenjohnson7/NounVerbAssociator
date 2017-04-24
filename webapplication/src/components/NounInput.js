@@ -70,6 +70,7 @@ class NounInput extends Component{
       </input>
     );
 
+    //change below prop with a fetch to server and a set state of verb array and queried noun
     let displayButton = (
       <button type='button' onClick={()=> this.setState({displaying: this.state.noun})}>Search</button>
     );
@@ -85,6 +86,7 @@ class NounInput extends Component{
     let verbDisplay = (<p> Please enter a singular noun.</p>);
 
     //displaying verbs if displayButton was clicked
+    //TODO: Replace below prop with assoc array from database
     if (this.props.associate.has(this.state.displaying.toLowerCase())){
       verbDisplay = (
         <div>

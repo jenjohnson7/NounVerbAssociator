@@ -15,6 +15,7 @@ import dataV1 from '../public/merged.json';
 import NounInput from './components/NounInput.js'
 import DataVersion from './components/DataVersion.js'
 
+const SERVER = 'http://localhost:5042/'
 
 const Title = styled.h1`
   color: blue;
@@ -89,10 +90,31 @@ class App extends Component {
 
     };
 
+    fetch(SERVER + 'api/version1/cat')
+    .then((response)=>{
+      if (response.ok){
+        return response.json();
+      }
+    })
+    .then((data)=>{
+      this.setState({test: data});
+    });
+
   }
   render() {
+    let test = (<p></p>);
+
+    if (this.state.test){
+      mytest.push(this.state.test);
+      console.log(this.state.test);
+      console.log(this.state.test['assoc']);
+    }
 
     let nounVerb ; //the input bar to input a noun into
+
+    // below can be replaced. We are instead going to be passing
+    // the name 'version#' as a thing to determine which database collection to
+    // look into.
     if (this.state.dataVersion === 'version1'){
       nounVerb = (<NounInput associate={this.nounsV1}/>);
     }
@@ -119,6 +141,7 @@ class App extends Component {
     <Box>
       <Title>Noun Verb Associator</Title>
       <Body>
+        {test}
         <DataVersion version={this.state.dataVersion} setVersion={(version)=>this.setState({dataVersion: version})} />
         {nounVerb}
       </Body>
