@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
 
+const SERVER = 'http://localhost:5042/'
 
 //discovered how to do this on develepor.mozilla.org
 const Col = styled.ul`
@@ -12,16 +13,15 @@ const Col = styled.ul`
 
 const TopPadding = styled.div`
   padding-top: 20px;
-
 `;
 
 function VerbList(props){
 
   let list;
-  let verbs = props.associate.['assoc'];
+  let verbs = props.associate['assoc'];
 
   /*
-  This is where we would put the thing to sort by frequency
+  Sorting by frequency
   */
 
   if (props.sort === 'highFrequency'){
@@ -63,7 +63,7 @@ class NounInput extends Component{
 
   getVerbArray(version, noun){
 
-    fetch(SERVER + 'api/' + version + '/' noun)
+    fetch(SERVER + 'api/' + version + '/' + noun)
     .then((response)=>{
       if (response.ok){
         return response.json();
