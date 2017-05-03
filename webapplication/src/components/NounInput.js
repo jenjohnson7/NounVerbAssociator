@@ -18,7 +18,7 @@ const TopPadding = styled.div`
 function VerbList(props){
 
   let list;
-  let verbs = props.associate.get(props.noun);
+  let verbs = props.associate.['assoc'];
 
   /*
   This is where we would put the thing to sort by frequency
@@ -58,7 +58,23 @@ class NounInput extends Component{
       displaying: '',
       sort: 'alphabetically'
     }
+
   }
+
+  getVerbArray(version, noun){
+
+    fetch(SERVER + 'api/' + version + '/' noun)
+    .then((response)=>{
+      if (response.ok){
+        return response.json();
+      }
+    })
+    .then((data)=>{
+      this.setState({associated: data, displaying: noun});
+    });
+
+  }
+
   render () {
 
     let inputBar = (
@@ -71,8 +87,8 @@ class NounInput extends Component{
     );
 
     //change below prop with a fetch to server and a set state of verb array and queried noun
-    let displayButton = (
-      <button type='button' onClick={()=> this.setState({displaying: this.state.noun})}>Search</button>
+    let searchButton = (
+      <button type='button' onClick={()=> this.getVerbArray(this.props.version, this.state.noun)}>Search</button>
     );
 
     let sortMethod = (
@@ -85,14 +101,14 @@ class NounInput extends Component{
 
     let verbDisplay = (<p> Please enter a singular noun.</p>);
 
-    //displaying verbs if displayButton was clicked
+    //displaying verbs if searchButton was clicked
     //TODO: Replace below prop with assoc array from database
-    if (this.props.associate.has(this.state.displaying.toLowerCase())){
+    if (this.state.associated){
       verbDisplay = (
         <div>
         <span>Sort verbs {sortMethod}</span>
         <p>Associating <b>"{this.state.displaying}"</b> to:</p>
-        <VerbList associate={this.props.associate} noun={this.state.displaying.toLowerCase()} sort={this.state.sort}/>
+        <VerbList associate={this.state.associated} sort={this.state.sort}/>
         </div>);
 
     }else if (this.state.displaying !== ''){
@@ -101,7 +117,7 @@ class NounInput extends Component{
 
     return (
       <TopPadding>
-      {inputBar}{displayButton}
+      {inputBar}{searchButton}
       {verbDisplay}
       </TopPadding>
 
@@ -111,8 +127,7 @@ class NounInput extends Component{
 }
 
 NounInput.PropTypes = {
-  associate: React.PropTypes.object.isRequired,
-
+  version: React.PropTypes.string.isRequired,
 }
 
 VerbList.PropTypes = {

@@ -115,26 +115,28 @@ class App extends Component {
     // below can be replaced. We are instead going to be passing
     // the name 'version#' as a thing to determine which database collection to
     // look into.
-    if (this.state.dataVersion === 'version1'){
-      nounVerb = (<NounInput associate={this.nounsV1}/>);
-    }
 
-    else if (this.state.dataVersion === 'version2'){
-      nounVerb = (<NounInput associate={this.nounsV2}/>);
-    }
-    else if (this.state.dataVersion === 'version3'){
-      nounVerb = (<NounInput associate={this.nounsV3}/>);
-    }
-    else if (this.state.dataVersion === 'version4'){
-      nounVerb = (<NounInput associate={this.nounsV4}/>);
-    }
-    else if (this.state.dataVersion === 'version5'){
-      nounVerb = (<NounInput associate={this.nounsV5}/>);
-    }
-
-    else if (this.state.dataVersion === 'mouse'){
-      nounVerb = (<NounInput associate={this.mouse}/>);
-    }
+    nounverb = (<NounInput version={this.state.dataVersion}/>);
+    // if (this.state.dataVersion === 'version1'){
+    //   nounVerb = (<NounInput associate={this.nounsV1}/>);
+    // }
+    //
+    // else if (this.state.dataVersion === 'version2'){
+    //   nounVerb = (<NounInput associate={this.nounsV2}/>);
+    // }
+    // else if (this.state.dataVersion === 'version3'){
+    //   nounVerb = (<NounInput associate={this.nounsV3}/>);
+    // }
+    // else if (this.state.dataVersion === 'version4'){
+    //   nounVerb = (<NounInput associate={this.nounsV4}/>);
+    // }
+    // else if (this.state.dataVersion === 'version5'){
+    //   nounVerb = (<NounInput associate={this.nounsV5}/>);
+    // }
+    //
+    // else if (this.state.dataVersion === 'mouse'){
+    //   nounVerb = (<NounInput associate={this.mouse}/>);
+    // }
 
     return(
       <Background>
