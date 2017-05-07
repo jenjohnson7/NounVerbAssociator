@@ -33,6 +33,18 @@ const http = require('http'),
     });
   });
 
+  app.get('/api/version2/:noun', (request, response) =>{
+    const nounId = request.params.noun;
+
+    db.collection('version2').find({'noun':nounId}).next((err, document)=>{
+      if (err){
+        console.error(err);
+        response.sendStatus(500);
+      }else{
+        response.send(document);}
+    });
+  });
+
 
 mongoClient.connect(mongoURL, (err, database)=>{
   if (err){

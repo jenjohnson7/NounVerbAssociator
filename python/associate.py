@@ -7,7 +7,7 @@ import convertForDB
 
 if __name__ == '__main__':
     if not len(sys.argv) == 4:
-        print("Usage: python associate.py 'directory of text files' 'name of new json file' 'version#'")
+        print("Usage: python associate.py <directory of text files> <name of new json file> <int: version#>")
 
     else:
         version = int(sys.argv[3])

@@ -19,7 +19,7 @@ Start the database server. This will start the server running on port 5000
 
 If this is the first time you have run the database server, the database will be empty. You can open it with
 
-`mongoimport --db film-explorer --collection movies --jsonArray movies.json --port 5000`
+`mongoimport --db noun-verb --collection version# --jsonArray movies.json --port 5000`
 
 
 Now start the server

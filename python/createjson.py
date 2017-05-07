@@ -313,6 +313,7 @@ def create_json(directory, fileArray, jsonTarget, version):
     myDict = {}
 
     for filename in fileArray:
+        print("Reading in ", filename)
         corpus_sents = tokenizer_test.read_from_file(directory + '/' + filename) #an array of tokenized data
 
         if version == 1:

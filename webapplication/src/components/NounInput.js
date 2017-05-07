@@ -107,7 +107,7 @@ class NounInput extends Component{
       verbDisplay = (
         <div>
         <span>Sort verbs {sortMethod}</span>
-        <p>Associating <b>"{this.state.displaying}"</b> to:</p>
+        <p>Associating <b>"{this.state.displaying}"</b> with:</p>
         <VerbList associate={this.state.associated} sort={this.state.sort}/>
         </div>);
 
