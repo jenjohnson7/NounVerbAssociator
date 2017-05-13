@@ -1,6 +1,6 @@
-This is a temp note from another assignment where the bottom displays how to put stuff into mongo.
-# film-explorer-server
-This is the server for our film explorer.
+
+# nounverbassociator
+This is the server for our associator.
 
 ## Setup
 
@@ -19,8 +19,9 @@ Start the database server. This will start the server running on port 5000
 
 If this is the first time you have run the database server, the database will be empty. You can open it with
 
-`mongoimport --db noun-verb --collection version# --jsonArray movies.json --port 5000`
+`mongoimport --db noun-verb --collection version# --jsonArray db-merged_v#.json --port 5000`
 
+where # should be replaced with a model number
 
 Now start the server
 

@@ -10,7 +10,6 @@ from nltk import sent_tokenize
 from nltk import pos_tag
 import operator
 from collections import OrderedDict
-#from en import verb, noun
 from nltk.stem.wordnet import WordNetLemmatizer
 
 def strip_sentence_v1(sentence):
@@ -121,10 +120,9 @@ def filter_noun(input_noun):
     #proper nouns can be ignored if we make sure that the NN tagging is not NNP
     #this would also solve the case for POS because POS would be NNP if not POS
 
+    input_noun = input_noun.replace('_', "")
     input_noun = input_noun.lower()
-    #noun = noun.strip(string.punctuation) #to remove trailing punctuation
-    noun = WordNetLemmatizer().lemmatize(input_noun,'n')
-    #make singular using nltk instead of en
+    input_noun = WordNetLemmatizer().lemmatize(input_noun,'n')
 
     return input_noun
 
@@ -132,14 +130,30 @@ def filter_verb(input_verb):
     '''
     Parameters: verb (string)
     Returns: verb (string)
-    Takes a verb, converts it to infinitive, and lowers it's case.
+    Takes a verb, converts it to infinitive, and lowers its case.
     '''
 
-    #input_verb = verb.infinitive(input_verb) #<== need en library
+    input_verb = input_verb.replace('_', "") #textfiles use _ to represent italics
     input_verb = input_verb.lower()
-    verb = WordNetLemmatizer().lemmatize(input_verb,'v')
 
-    return verb
+    if (input_verb == "'s"):
+        # 'is' is lemmatized as 'be'
+        return 'be'
+
+    elif (input_verb == "'ve"):
+        return 'have'
+
+    elif (input_verb == "'m"): #We have no idea what this is a contraction for
+        return ''
+
+    elif ( '¿' in input_verb): #caused by errors in tokenization/textfiles
+        return ''
+
+    elif (input_verb[0] == "'"):
+        input_verb = input_verb[1:]
+
+    return WordNetLemmatizer().lemmatize(input_verb,'v')
+
 
 #this is where we would want to add additional scoping pertaining to type of manner,
 #definition, or anything beyond verb and frequency.
@@ -171,20 +185,21 @@ def insert_verb_object(my_dict, noun, verb):
     '''
     verb_found = False; #to determine if verb is already present in dict
 
-    if noun in my_dict:
-        for verb_object in my_dict[noun]: #checking each verb object within array
-            if verb_object['verb'] == verb: #if verb value == verb
-                verb_object['freq'] = verb_object['freq'] + 1
-                verb_found = True;
+    if not (verb == ''):
+        if noun in my_dict:
+            for verb_object in my_dict[noun]: #checking each verb object within array
+                if verb_object['verb'] == verb: #if verb value == verb
+                    verb_object['freq'] = verb_object['freq'] + 1
+                    verb_found = True;
 
-        #creating verb_object and inserting into my_dict at key noun
-        if not verb_found:
+            #creating verb_object and inserting into my_dict at key noun
+            if not verb_found:
+                verb_object = create_verb_object(verb)
+                my_dict[noun].append(verb_object)
+
+        else: #if key noun is not in my_dict
             verb_object = create_verb_object(verb)
-            my_dict[noun].append(verb_object)
-
-    else: #if key noun is not in my_dict
-        verb_object = create_verb_object(verb)
-        my_dict[noun] = [verb_object]
+            my_dict[noun] = [verb_object]
 
     return my_dict
 
@@ -339,7 +354,7 @@ def main():
     '''
 
     '''
-    print('Running...')
+    print('Currently used as module')
 
     # toConvert = ["bone_assassin.txt", "buckley_old_tales_greece.txt", "dumas_black_tulip.txt", "hunt_young_farmer.txt", "lang_he.txt", "memoir_leonora_christina.txt"]
     #

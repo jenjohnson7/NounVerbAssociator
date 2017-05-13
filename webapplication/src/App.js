@@ -47,28 +47,27 @@ class App extends Component {
 
     };
 
-    fetch(SERVER + 'api/version1/cat')
-    .then((response)=>{
-      if (response.ok){
-        return response.json();
-      }
-    })
-    .then((data)=>{
-      this.setState({test: data});
-    });
+    // fetch(SERVER + 'api/version1/cat')
+    // .then((response)=>{
+    //   if (response.ok){
+    //     return response.json();
+    //   }
+    // })
+    // .then((data)=>{
+    //   this.setState({test: data});
+    // });
 
   }
   render() {
-    let mytest = [];
-    if (this.state.test){
-      mytest.push(this.state.test);
-      console.log(this.state.test);
-      console.log(this.state.test['assoc']);
-    }
+    // let mytest = [];
+    // if (this.state.test){
+    //   mytest.push(this.state.test);
+    //   console.log(this.state.test);
+    //   console.log(this.state.test['assoc']);
+    // }
 
     //the input bar to input a noun into
     let nounverb = (<NounInput version={this.state.dataVersion}/>);
-
 
     return(
       <Background>

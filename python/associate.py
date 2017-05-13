@@ -1,3 +1,9 @@
+'''
+Takes a directory of text files and converts them into pre-db json files.
+NOTE: after running this program, json files should be merged if needed then
+converted into the database format.
+'''
+
 import sys
 import json
 import string
@@ -21,9 +27,9 @@ if __name__ == '__main__':
             for i in range(1, 6):
                 target = sys.argv[2] + str(i) + '.json' # name#.json
                 createjson.create_json(sys.argv[1], fileArray, target, i)
-                convertForDB.convert(sys.argv[1] + '/'+ target)
+                #convertForDB.convert(sys.argv[1] + '/'+ target)
 
         else:
             target = sys.argv[2] + sys.argv[3] + '.json'
             createjson.create_json(sys.argv[1], fileArray, target, version)
-            convertForDB.convert(sys.argv[1] + '/'+ target)
+            #convertForDB.convert(sys.argv[1] + '/'+ target)

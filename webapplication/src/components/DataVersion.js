@@ -28,7 +28,6 @@ class DataVersion extends Component{
       <option value='version3'>Version 3</option>
       <option value='version4'>Version 4</option>
       <option value='version5'>Version 5</option>
-      <option value='mouse'>Mouse</option>
       </select>
     );
 
@@ -48,10 +47,8 @@ class DataVersion extends Component{
 
     }else if (this.props.version === 'version5'){
       description = (<span> = takes all nouns to all following verbs in sentence. </span>);
-
-    }else if (this.props.version === 'mouse'){
-      description = (<span> = version 2 test of our self-tokenized sentence of If You Give a Mouse a Cookie</span>)
     }
+
 
     return (<div>{versionPicker}{description}</div>);
   }

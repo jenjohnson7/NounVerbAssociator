@@ -56,12 +56,14 @@ class NounInput extends Component{
     this.state = {
       noun: '',
       displaying: '',
-      sort: 'alphabetically'
+      sort: 'alphabetically',
+      associated: null
     }
 
   }
 
   getVerbArray(version, noun){
+    noun = noun.toLowerCase()
 
     fetch(SERVER + 'api/' + version + '/' + noun)
     .then((response)=>{
@@ -82,7 +84,7 @@ class NounInput extends Component{
         type='text'
         placeholder='noun'
         value={this.state.noun}
-        onChange={(event)=>this.setState({noun: event.target.value})}>
+        onChange={(event)=>this.setState({associated: null, noun: event.target.value})}>
       </input>
     );
 
@@ -102,7 +104,6 @@ class NounInput extends Component{
     let verbDisplay = (<p> Please enter a singular noun.</p>);
 
     //displaying verbs if searchButton was clicked
-    //TODO: Replace below prop with assoc array from database
     if (this.state.associated){
       verbDisplay = (
         <div>
@@ -111,9 +112,10 @@ class NounInput extends Component{
         <VerbList associate={this.state.associated} sort={this.state.sort}/>
         </div>);
 
-    }else if (this.state.displaying !== ''){
-      verbDisplay = (<p>Sorry, the word "{this.state.displaying}" has not been found in our corpus. Please make sure the noun is spelled correctly and that it is singular. </p>);
-    }
+      }
+    // }else if (this.state.displaying !== ''){
+    //   verbDisplay = (<p>Sorry, the word "{this.state.displaying}" has not been found in our corpus. Please make sure the noun is spelled correctly and that it is singular. </p>);
+    // }
 
     return (
       <TopPadding>

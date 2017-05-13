@@ -2,6 +2,12 @@ import sys
 import json
 import os
 
+FILES_V1 = ['gone1.json', 'gtwo1.json', 'gthree1.json']
+FILES_V2 = ['gone2.json', 'gtwo2.json', 'gthree2.json']
+FILES_V3 = ['gone3.json', 'gtwo3.json', 'gthree3.json']
+FILES_V4 = ['gone4.json', 'gtwo4.json', 'gthree4.json']
+FILES_V5 = ['gone5.json', 'gtwo5.json', 'gthree5.json']
+
 def merge(file_name_array):
     merged = {}
     for filename in file_name_array:
@@ -37,24 +43,49 @@ def merge(file_name_array):
     return merged
 
 def main():
-    file_name_array = []
-    #add files here
-    file_name_array.append("mouse.json")
-    file_name_array.append("moose.json")
+    # file_name_array = []
+    # #add files here
+    # file_name_array.append("mouse.json")
+    # file_name_array.append("moose.json")
+    #
+    # # file_name_array.append("textdatafolder/55.json")
+    # # file_name_array.append("textdatafolder/120.json")
+    # # file_name_array.append("textdatafolder/174.json")
+    # # file_name_array.append("textdatafolder/236.json")
+    # # file_name_array.append("textdatafolder/521.json")
+    # # file_name_array.append("textdatafolder/730.json")
+    # # file_name_array.append("textdatafolder/1661.json")
+    # # file_name_array.append("textdatafolder/2148.json")
+    #
+    # final_data = merge(file_name_array)
+    #
+    # with open('merged.json','w') as outfile:
+    #     json.dump(final_data, outfile)
 
-    # file_name_array.append("textdatafolder/55.json")
-    # file_name_array.append("textdatafolder/120.json")
-    # file_name_array.append("textdatafolder/174.json")
-    # file_name_array.append("textdatafolder/236.json")
-    # file_name_array.append("textdatafolder/521.json")
-    # file_name_array.append("textdatafolder/730.json")
-    # file_name_array.append("textdatafolder/1661.json")
-    # file_name_array.append("textdatafolder/2148.json")
+    print("Merging ", FILES_V1)
+    merging = merge(FILES_V1)
+    with open('merged_v1.json','w') as outfile:
+        json.dump(merging, outfile)
 
-    final_data = merge(file_name_array)
+    print("Merging ", FILES_V2)
+    merging = merge(FILES_V2)
+    with open('merged_v2.json','w') as outfile:
+        json.dump(merging, outfile)
 
-    with open('merged.json','w') as outfile:
-        json.dump(final_data, outfile)
+    print("Merging ", FILES_V3)
+    merging = merge(FILES_V3)
+    with open('merged_v3.json','w') as outfile:
+        json.dump(merging, outfile)
+
+    print("Merging ", FILES_V4)
+    merging = merge(FILES_V4)
+    with open('merged_v4.json','w') as outfile:
+        json.dump(merging, outfile)
+
+    print("Merging ", FILES_V5)
+    merging = merge(FILES_V5)
+    with open('merged_v5.json','w') as outfile:
+        json.dump(merging, outfile)
 
 if __name__ == "__main__":
     main()

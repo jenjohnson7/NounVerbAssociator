@@ -45,6 +45,41 @@ const http = require('http'),
     });
   });
 
+  app.get('/api/version3/:noun', (request, response) =>{
+    const nounId = request.params.noun;
+
+    db.collection('version3').find({'noun':nounId}).next((err, document)=>{
+      if (err){
+        console.error(err);
+        response.sendStatus(500);
+      }else{
+        response.send(document);}
+    });
+  });
+
+  app.get('/api/version4/:noun', (request, response) =>{
+    const nounId = request.params.noun;
+
+    db.collection('version4').find({'noun':nounId}).next((err, document)=>{
+      if (err){
+        console.error(err);
+        response.sendStatus(500);
+      }else{
+        response.send(document);}
+    });
+  });
+
+  app.get('/api/version5/:noun', (request, response) =>{
+    const nounId = request.params.noun;
+
+    db.collection('version5').find({'noun':nounId}).next((err, document)=>{
+      if (err){
+        console.error(err);
+        response.sendStatus(500);
+      }else{
+        response.send(document);}
+    });
+  });
 
 mongoClient.connect(mongoURL, (err, database)=>{
   if (err){
