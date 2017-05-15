@@ -1,3 +1,6 @@
+'''
+Opens up raw text file and tokenizes it
+'''
 import sys
 from nltk.corpus import brown
 

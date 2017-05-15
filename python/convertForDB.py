@@ -1,3 +1,6 @@
+'''
+Converts old json file format to our desired mongo format
+'''
 import json
 
 MYFILES = ['merged_v1.json', 'merged_v2.json', 'merged_v3.json', 'merged_v4.json', 'merged_v5.json']

@@ -1,12 +1,15 @@
+'''
+Merges pre-db json files
+'''
 import sys
 import json
 import os
 
-FILES_V1 = ['gone1.json', 'gtwo1.json', 'gthree1.json']
-FILES_V2 = ['gone2.json', 'gtwo2.json', 'gthree2.json']
-FILES_V3 = ['gone3.json', 'gtwo3.json', 'gthree3.json']
-FILES_V4 = ['gone4.json', 'gtwo4.json', 'gthree4.json']
-FILES_V5 = ['gone5.json', 'gtwo5.json', 'gthree5.json']
+FILES_V1 = ['gone1.json', 'gtwo1.json', 'gthree1.json', 'gfour1.json']
+FILES_V2 = ['gone2.json', 'gtwo2.json', 'gthree2.json', 'gfour2.json']
+FILES_V3 = ['gone3.json', 'gtwo3.json', 'gthree3.json', 'gfour3.json']
+FILES_V4 = ['gone4.json', 'gtwo4.json', 'gthree4.json', 'gfour4.json']
+FILES_V5 = ['gone5.json', 'gtwo5.json', 'gthree5.json', 'gfour5.json']
 
 def merge(file_name_array):
     merged = {}

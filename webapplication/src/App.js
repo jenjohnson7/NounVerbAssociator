@@ -59,11 +59,11 @@ class App extends Component {
 
   }
   render() {
-    // let mytest = [];
     // if (this.state.test){
-    //   mytest.push(this.state.test);
+    //   let mytest = this.state.test;
     //   console.log(this.state.test);
     //   console.log(this.state.test['assoc']);
+    //   console.log(this.state.test['assoc'].length);
     // }
 
     //the input bar to input a noun into

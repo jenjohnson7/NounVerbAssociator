@@ -1,3 +1,7 @@
+'''
+Creates json files based on the five models by using raw data sets
+'''
+
 import sys
 import json
 import string
@@ -144,6 +148,9 @@ def filter_verb(input_verb):
         return 'have'
 
     elif (input_verb == "'m"): #We have no idea what this is a contraction for
+        return ''
+
+    elif (input_verb == ''): # to exit early and prevent further checking
         return ''
 
     elif ( '¿' in input_verb): #caused by errors in tokenization/textfiles

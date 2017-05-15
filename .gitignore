@@ -3,10 +3,21 @@
 /server/node_modules
 /server/data
 /python/gutenberg
+/python/1-25
+/python/26-50
+/python/51-100
+/python/101-150
+/python/test1jsonfiles
+/python/merging
+/__pycache__
+/python/__pycache__
+/textdatafolder
+
 
 .DS_Store
 .env
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.json
 *.pyc
